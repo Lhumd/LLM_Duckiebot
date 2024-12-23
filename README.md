@@ -35,12 +35,12 @@ For a detailed deep-dive, see our [Presentation]([https://github.com/duckietown/
 
 # Instructions
 
-**NOTE:** All commands below are intended to be executed from the root directory of this exercise (i.e., the directory containing this `README`).
+**NOTE:** All commands below are intended to be executed from the root directory of this repo (i.e., the directory containing this `README`).
 
 
-## 1. Make sure your exercise is up-to-date
+## 1. Make sure your repo is up-to-date
 
-Update your exercise definition and instructions,
+Update your repo definition and instructions,
 
     git pull upstream ente
 
@@ -51,7 +51,7 @@ Update your exercise definition and instructions,
 
 - 💻 Always make sure your Duckietown Shell is updated to the latest version. See [installation instructions](https://github.com/duckietown/duckietown-shell)
 
-This exercise is meant to be run with the `ente` version of the shell commands. You can switch to that version with `dts profile switch ente`. 
+This repo is meant to be run with the `ente` version of the shell commands. You can switch to that version with `dts profile switch ente`. 
 
 - 💻 Update the shell commands: `dts update`
 
@@ -65,7 +65,7 @@ This repository uses OpenAI APIs for generating actions based on input. Ensure t
 1. Obtain an OpenAI API key from OpenAI.
 2. Update the api_key variable in the file visual_lane_servoing_node with your OpenAI API key.
 
-## 4. Work on the exercise
+## 4. Work on the repo
 
 
 ### Launch the code editor
@@ -159,8 +159,5 @@ dts code vnc -R [ROBOT_NAME]
 
 where `[ROBOT_NAME]` could be the real or the virtual robot (use whichever you ran the `dts code workbench` and `dts code build` command with).
 
-In the noVNC desktop, click on the icon marked "VLS - Visual Lane Servoing Exercise" and then you should follw the prompts
+In the noVNC desktop, click on the icon marked "VLS - Visual Lane Servoing repo" and then you should follw the prompts
 in the terminal where you ran `dts code workbench`.
-
-Now you can proceed to the [first notebook](./notebooks/01-Pinhole-Camera/pinhole_camera_matrix.ipynb).
-
