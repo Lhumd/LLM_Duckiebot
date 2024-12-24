@@ -3,35 +3,62 @@
 </p>
 
 # LLM Duckiebot
-This repository explores the integration of Large Language Models (LLMs) with robotics, specifically focusing on Duckiebot for autonomous driving using image-based input and structured patterns. Additionally, the repository highlights experiments in quadrupedal locomotion using language commands.
 
-Case Study: Language to Quadrupedal Locomotion and Duckiebot Driving
-## Overview
-This case study demonstrates the challenges and methodologies of using LLMs for robotic control. The focus areas include:
+## Introduction
+The integration of Large Language Models (LLMs) into robotics has opened up new avenues for intelligent control systems. This project explores how LLMs can drive a Duckiebot autonomously using visual inputs and structured patterns, as well as manage quadrupedal locomotion via natural language commands. By combining robotics with the power of LLMs, we aim to bridge the gap between machine intelligence and real-world applications.
 
-1. <b> Quadrupedal Locomotion: </b> Translating natural language commands into actionable movement patterns.
-2. <b> Duckiebot Driving: </b>  Using a Duckiebot to navigate based on visual input and predefined driving rules.
+## Motivation
+Robotics relies heavily on precise and predefined control algorithms. However, traditional approaches struggle with adaptability and dynamic tasks. LLMs, with their capability to process and respond to natural language, present an opportunity to simplify and generalize robotic control. This project investigates:
+
+* Whether LLMs can effectively interpret input (e.g., images, commands) for robotic control.
+* The challenges of integrating LLMs into real-time robotic applications, such as autonomous driving and quadrupedal movement.
+
+## Method
+### Quadrupedal Locomotion (Previous work)
+Using the [SayTap](https://saytap.github.io/) Method, natural language commands are translated into movement sequences for quadrupedal robots. The framework leverages a limited number of demonstrations to train and guide the robot’s actions.
+### Duckiebot Driving
+Duckiebot navigates based on visual inputs (64x64 pixel images) and outputs a structured sequence of velocities and directions over time. Key rules include:
+
+1. Velocities: [0.0, 0.2].
+2. Directions: [LL, L, F, R, RR, S].
+
+Example output: 0.2 F 0.2 F 0.2 RR
+Input instruction:
    
-## Methodology
-<b>Language to Quadrupedal Locomotion </b> 
+      Follow this instruction for any photos that I give to you and provide me with the output
+      <General instruction block>
+      You are an expert driver of the car. Your job is to give a velocity and direction pattern based on the input for now, 0.2 seconds later, and 0.4 second later from the current time.Your goal is to safely drive without damaging any ducks which are civilians in our town and explore the city. The input is an image 64 * 64 from the driver's point of view. You have to decide the action based on the current position of the car. The bottom of the image is the closest part to the car.The street is divided into two ways by yellow dashed lines. The road boundary is marked by white lines on both sides of the road. You will always give the output in the correct format no matter what the input is.
+      
+      <Output format definition block>
+      The following are rules for describing the velocity and direction pattern:
+      1. You should first output the velocity, then the direction for the current time, then the velocity for 0.2 sec later and the direction for that time, and then the velocity for 0.4 sec and the direction for that.
+      2. There are two velocities to choose from: [0.0, 0.2].
+      3. A direction could be written as LL, L, F, R, RR, and S for 45 degrees to left, 20 degrees to left, forward, 20 degrees to right, 45 degrees to right, and stop.
+      
+      <Examples block>
+      Input:
+      
+      	    Output: 
+                0.2 F							0.2 F							0.2 RR
+      	    0.2 L							0.2 F							0.2 R
+      	    0.2 L							0.2 F							0.2 R
+                   
+      	  
 
-Using the SayTap Method, quadrupedal robots respond to natural language commands with predefined motion sequences.
 
-<b>Language to Duckiebot Driving </b> 
+## Results
+### Observations
+1. Quadrupedal Locomotion:
+* Performance deteriorates with an increasing number of demonstrations, indicating that fewer, high-quality examples yield better results.
+* Reference: SayTap: Language to Quadrupedal Locomotion.
+2. Duckiebot Driving:
+* LLMs exhibit a strong dependency on patterns and predefined examples.
+* Continuous tasks require resetting instructions, highlighting a limitation in maintaining task context.
+## Challenges
+* High dependence on training patterns rather than logical reasoning.
+* Inefficient handling of continuous commands without resetting instructions.
 
-Duckiebot interprets 64x64 pixel images to decide velocity and direction patterns. Outputs are structured as sequences (e.g., 0.2 F 0.2 F 0.2 RR).
-
-## Observations and Challenges
-<b>Quadrupedal Locomotion: </b>
-
-    - Performance degrades with more training examples.
-<b>Duckiebot Driving: </b>
-
-    - LLMs heavily rely on patterns and struggle without detailed examples.
-    - Continuous commands require resetting instructions.
-## Future Work
-
-For a detailed deep-dive, see our [Presentation]([https://github.com/duckietown/duckietown-shell](https://docs.google.com/presentation/d/1iGbgDfPQP9gEIzcXKrSCXH6V1ELKVtwjplxxmRdpl0U/edit#slide=id.g31c0eb301aa_0_55)).
+For a detailed deep-dive, see our [Presentation](https://docs.google.com/presentation/d/1iGbgDfPQP9gEIzcXKrSCXH6V1ELKVtwjplxxmRdpl0U/edit#slide=id.g31c0eb301aa_0_55).
 
 # Instructions
 
